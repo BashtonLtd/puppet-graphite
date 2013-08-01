@@ -1,7 +1,8 @@
 # Configures graphite web interface and creates an sqlite DB
 class graphite::web::config (
   $storagedir = $graphite::web::params::storagedir,
-  $sqlitedb   = $graphite::web::params::sqlitedb) {
+  $sqlitedb   = $graphite::web::params::sqlitedb,
+  $display_timezone = $graphite::web::params::display_timezone) {
 
 
   file { $graphite::web::params::localsettings:
