@@ -1,9 +1,12 @@
 name    'bashtoni-graphite'
 version '0.1.0'
-source 'github'
+source 'UNKNOWN'
 author 'Sam Bashton'
-license 'MIT'
-summary 'Installs and configures graphite'
+license 'Apache License, Version 2.0'
+summary 'UNKNOWN'
+description 'UNKNOWN'
+project_page 'UNKNOWN'
 
 ## Add dependencies, if any:
-dependency 'ripienaar/concat', '>= 0.1.0'
+# dependency 'username/name', '>= 1.2.0'
+'puppetlabs/concat', '>= 1.0.2'

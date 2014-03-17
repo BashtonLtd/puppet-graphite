@@ -7,4 +7,8 @@ class graphite::carbon::package {
     ensure => installed,
   }
 
+  package { "python-txamqp":
+    ensure => installed,
+  }
+
 }

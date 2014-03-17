@@ -3,6 +3,32 @@
 # Install and configure carbon and whisper, enabling
 # storage and retrieval of time series data
 #
+# === Parameters
+#
+# All parameters optional, distro defaults will be used if not
+# specified
+#
+# [**]
+#   Explanation of what this parameter affects and what it defaults to.
+#   e.g. "Specify one or more upstream ntp servers as an array."
+#
+# === Variables
+#
+# Here you should define a list of variables that this module would require.
+#
+# [*sample_variable*]
+#   Explanation of how this variable affects the funtion of this class and if it
+#   has a default. e.g. "The parameter enc_ntp_servers must be set by the
+#   External Node Classifier as a comma separated list of hostnames." (Note,
+#   global variables should not be used in preference to class parameters  as of
+#   Puppet 2.6.)
+#
+# === Examples
+#
+#  class { graphite:
+#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
+#  }
+#
 # === Authors
 #
 # Sam Bashton <sam@bashton.com>
@@ -12,46 +38,46 @@
 # Copyright 2013 Bashton Ltd
 #
 class graphite::carbon (
-  $cache_enabled               = graphite::params::cache_enabled,
-  $use_ppa                     = graphite::params::use_ppa,
-  $max_updates_per_second      = graphite::params::max_updates_per_second,
-  $max_creates_per_minute      = graphite::params::max_creates_per_minute,
-  $whisper_autoflush           = graphite::params::whisper_autoflush,
-  $whisper_sparse              = graphite::params::whisper_sparse,
-  $carbon_metric_prefix        = graphite::params::carbon_metric_prefix,
-  $carbon_metric_interval      = graphite::params::carbon_metric_interval,
-  $flow_control                = graphite::params::flow_control,
-  $line_interface              = graphite::params::line_interface,
-  $line_port                   = graphite::params::line_port,
-  $pickle_interface            = graphite::params::pickle_interface,
-  $pickle_port                 = graphite::params::pickle_port,
-  $pickle_insecure             = graphite::params::pickle_insecure,
-  $query_interface             = graphite::params::query_interface,
-  $query_port                  = graphite::params::query_port,
-  $amqp                        = graphite::params::amqp,
-  $amqp_host                   = graphite::params::amqp_host,
-  $amqp_port                   = graphite::params::amqp_port,
-  $amqp_vhost                  = graphite::params::amqp_vhost,
-  $amqp_user                   = graphite::params::amqp_user,
-  $amqp_pass                   = graphite::params::amqp_pass,
-  $amqp_exchange               = graphite::params::amqp_exchange,
-  $amqp_metric_body            = graphite::params::amqp_metric_body,
-  $relay_enabled               = graphite::params::relay_enabled,
-  $relay_line_interface        = graphite::params::relay_line_interface,
-  $relay_line_port             = graphite::params::relay_line_port,
-  $relay_pickle_interface      = graphite::params::relay_pickle_interface,
-  $relay_pickle_port           = graphite::params::relay_pickle_port,
-  $relay_method                = graphite::params::relay_method,
-  $relay_replication           = graphite::params::relay_replication,
-  $relay_destinations          = graphite::params::relay_destinations,
-  $aggregator_enabled          = graphite::params::aggregator_enabled,
-  $aggregator_line_interface   = graphite::params::aggregator_line_interface,
-  $aggregator_line_port        = graphite::params::aggregator_line_port,
-  $aggregator_pickle_interface = graphite::params::aggregator_pickle_interface,
-  $aggregator_pickle_port      = graphite::params::aggregator_pickle_port,
-  $aggregator_destinations     = graphite::params::aggregator_destinations,
-  $aggregator_max_intervals    = graphite::params::aggregator_max_intervals,
-  $aggregator_replication      = graphite::params::aggregator_replication
+  $cache_enabled               = true,
+  $use_ppa                     = true,
+  $max_updates_per_second      = '500',
+  $max_creates_per_minute      = '50',
+  $whisper_autoflush           = 'False',
+  $whisper_sparse              = 'False',
+  $carbon_metric_prefix        = 'carbon',
+  $carbon_metric_interval      = '60',
+  $flow_control                = 'True',
+  $line_interface              = '0.0.0.0',
+  $line_port                   = '2003',
+  $pickle_interface            = '0.0.0.0',
+  $pickle_port                 = '2004',
+  $pickle_insecure             = 'False',
+  $query_interface             = '0.0.0.0',
+  $query_port                  = '7002',
+  $amqp                        = 'False',
+  $amqp_host                   = undef,
+  $amqp_port                   = '5672',
+  $amqp_vhost                  = undef,
+  $amqp_user                   = undef,
+  $amqp_pass                   = undef,
+  $amqp_exchange               = undef,
+  $amqp_metric_body            = 'False',
+  $relay_enabled               = false,
+  $relay_line_interface        = '0.0.0.0',
+  $relay_line_port             = '2013',
+  $relay_pickle_interface      = '0.0.0.0',
+  $relay_pickle_port           = '2014',
+  $relay_method                = 'rules',
+  $relay_replication           = '1',
+  $relay_destinations          = '127.0.0.1:2004',
+  $aggregator_enabled          = false,
+  $aggregator_line_interface   = '0.0.0.0',
+  $aggregator_line_port        = '2023',
+  $aggregator_pickle_interface = '0.0.0.0',
+  $aggregator_pickle_port      = '2024',
+  $aggregator_destinations     = '127.0.0.1:2004',
+  $aggregator_max_intervals    = '5',
+  $aggregator_replication      = '1'
   ) {
 
     class { 'graphite::carbon::package': }
