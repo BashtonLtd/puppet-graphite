@@ -55,6 +55,10 @@ class graphite::install(
     ensure   => 'installed',
     provider => undef, # default to package provider auto-discovery
   }->
+  package{'Django':
+    ensure   => '1.5.10',
+    provider => 'pip',
+  }->
   package{'django-tagging':
     ensure   => $django_tagging_ver,
   }->

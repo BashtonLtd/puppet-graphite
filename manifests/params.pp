@@ -65,7 +65,10 @@ class graphite::params {
       $graphitepkgs = [
         'python-cairo',
         'python-twisted',
-        'python-django',
+# In Ubuntu 14.04 python-django is v1.6.1 which web interface is having problems
+# with, django have to be installed in the latest 1.5 version (1.5.10) from
+# pip
+#        'python-django',
         'python-ldap',
         'python-memcache',
         'python-sqlite',
@@ -119,7 +122,10 @@ class graphite::params {
 
       $graphitepkgs = [
         'pycairo',
-        'Django14',
+# In Ubuntu 14.04 python-django is v1.6.1 which web interface is having problems
+# with, django have to be installed in the latest 1.5 version (1.5.10) from
+# pip
+#        'Django14',
         'python-ldap',
         'python-memcached',
         'python-sqlite2',
