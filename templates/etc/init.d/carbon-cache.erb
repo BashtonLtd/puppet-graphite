@@ -14,13 +14,16 @@
 
 case "$1" in
 	start)
-		python /opt/graphite/bin/carbon-cache.py start
+		python /opt/graphite/bin/carbon-cache.py --instance=1 start
+		python /opt/graphite/bin/carbon-cache.py --instance=2 start
 		;;
 	stop)
-		python /opt/graphite/bin/carbon-cache.py stop
+		python /opt/graphite/bin/carbon-cache.py --instance=1 stop
+		python /opt/graphite/bin/carbon-cache.py --instance=2 stop
 		;;
 	status)
-		python /opt/graphite/bin/carbon-cache.py status
+		python /opt/graphite/bin/carbon-cache.py --instance=1 status
+		python /opt/graphite/bin/carbon-cache.py --instance=2 status
 		;;
 	restart)
 		$0 stop ; sleep 3 ; $0 start
